@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greet & Goodbye Demo</title>
+    
+    <link rel="stylesheet" href="lab2.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="title">Welcome</h1>
+        <div class="input-area">
+            <input id="name" placeholder="Your name">
+            <button id="greet">Greet</button>
+        </div>
+        <ul id="list"></ul>
+    </div>
+
+    
+    <script>
+        
+        function addName() {
+            const input = document.getElementById('name');
+            const name = input.value.trim();
+            
+            if (!name) return; 
+            
+            
+            document.getElementById('title').textContent = `Hello, ${name}!`;
+            
+            
+            const li = document.createElement('li');
+            li.textContent = name;
+            
+            
+            document.getElementById('list').appendChild(li);
+            
+            
+            input.value = '';
+        }
+
+        
+        function removeName(e) {
+            if (e.target.nodeName === 'LI') {
+                const name = e.target.textContent;
+                document.getElementById('title').textContent = `Goodbye, ${name}! see you later.`;
+                e.target.remove(); 
+            }
+        }
+
+        
+        document.getElementById('greet').addEventListener('click', addName);
+        document.getElementById('list').addEventListener('click', removeName);
+    </script>
+</body>
+</html>
